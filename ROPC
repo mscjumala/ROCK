@@ -25,7 +25,7 @@ if localplayer.Name ~= host then
 	if players:FindFirstChild(Host):IsInGroup(13942873) then
         print('ingroup')
         
-        local spot = nil
+        local Spot = nil
 
         game:GetService('RunService'):Set3dRenderingEnabled(Render)
         setfpscap(Fps)
@@ -69,8 +69,8 @@ if localplayer.Name ~= host then
         if localplayer.Name == Alts.Alt10 then
             Spot = 10
 		end
-        print(spot)
-        chatsystem.SayMessageRequest:FireServer('Loaded Host: '..host..'Position: '..spot, "All")
+        print(Spot)
+        chatsystem.SayMessageRequest:FireServer('Loaded Host: '..host..'Position: '..Spot, "All")
 
 		--FUNCTIONS--
 
