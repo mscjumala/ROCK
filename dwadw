@@ -1,0 +1,201 @@
+local players = game:GetService('Players')
+local localplayer = players.LocalPlayer
+local character = localplayer.Character
+local humanoid = character.Humanoid
+local humanoidrootpart = character.HumanoidRootPart
+
+local host = getgenv().Host
+
+local prefix = getgenv().Prefix
+local fps = getgenv().Fps
+local render = getgenv().Render
+print(host)
+print(prefix)
+print(fps)
+print(render)
+
+local advertenabled = false
+
+
+local replicatedstorage = game:GetService('ReplicatedStorage')
+local chatsystem = replicatedstorage.DefaultChatSystemChatEvents
+print(host)
+
+if localplayer.Name ~= host then
+	if players:FindFirstChild(Host):IsInGroup(13942873) then
+        print('ingroup')
+        
+        local Spot = nil
+
+        game:GetService('RunService'):Set3dRenderingEnabled(Render)
+        setfpscap(Fps)
+
+        if localplayer.Name == Alts.Alt1 then
+            Spot = 1
+        end
+
+        if localplayer.Name == Alts.Alt2 then
+            Spot = 2
+        end
+
+        if localplayer.Name == Alts.Alt3 then
+            Spot = 3
+        end
+
+        if localplayer.Name == Alts.Alt4 then
+            Spot = 4
+        end
+
+        if localplayer.Name == Alts.Alt5 then
+            Spot = 5
+        end
+
+        if localplayer.Name == Alts.Alt6 then
+            Spot = 6
+        end
+
+        if localplayer.Name == Alts.Alt7 then
+            Spot = 7
+        end
+
+        if localplayer.Name == Alts.Alt8 then
+            Spot = 8
+        end
+
+        if localplayer.Name == Alts.Alt9 then
+            Spot = 9
+        end	
+
+        if localplayer.Name == Alts.Alt10 then
+            Spot = 10
+		end
+        print(Spot)
+        chatsystem.SayMessageRequest:FireServer('Loaded Host: '..host,"All")
+
+		--FUNCTIONS--
+
+	
+		local function TELEPORT()
+			localplayer.Character.HumanoidRootPart.CFrame = players:FindFirstChild(host).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,2)
+		end
+
+
+
+
+		local function Line()
+			TELEPORT()
+	        wait(0.25)
+	        if Spot == 1 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(4,0,0)
+	        elseif Spot == 2 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(-4,0,0)
+	        elseif Spot == 3 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(8,0,0)
+	        elseif Spot == 4 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(-8,0,0)
+	        elseif Spot == 5 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(12,0,0)
+	        elseif Spot == 6 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(-12,0,0)
+	        elseif Spot == 7 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(16,0,0)
+          	elseif Spot == 8 then
+		        localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(-16,0,0)
+	        elseif Spot == 9 then
+				localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(20,0,0)
+        	elseif Spot == 10 then
+				localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(-20,0,0)
+		end
+	end
+
+		local function SAY(MSG)
+			chatsystem.SayMessageRequest:FireServer(MSG, "All")
+		end
+
+		local function AIRLOCK()
+			localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,6,0)
+	        wait(0.1)
+	        localplayer.Character.HumanoidRootPart.Anchored = true
+		end
+
+		local function UNLOCK()
+			localplayer.Character.HumanoidRootPart.Anchored = false
+		end
+
+		local function RENDER(msg)
+			if msg == 'on' then
+				game:GetService('RunService'):Set3dRenderingEnabled(true)
+			elseif msg == 'off' then
+				game:GetService('RunService'):Set3dRenderingEnabled(false)
+			end
+		end
+
+		local function ADVERT(MSG)
+			advertenabled = true
+			while advertenabled do
+				chatsystem.SayMessageRequest:FireServer(MSG, "All")
+				wait(5)
+			end
+		end
+
+		local function ADVERTOFF()
+			advertenabled = false
+		end
+
+		local function FPS(msg)
+			setfpscap(tonumber(msg))
+		end
+
+		local function TELEPORTPLAYER(MSG)
+			localplayer.Character.HumanoidRootPart.CFrame = players:FindFirstChild(MSG).Character.HumanoidRootPart.CFrame * CFrame.new(0,0,2)
+		end
+
+		local function FOLLOWPLAYER()
+			
+		end
+
+		local function STOPFOLLOWING()
+			
+		end
+
+		--CHATSYSTEM--
+
+		for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				v.Chatted:Connect(
+			        function(personSay)
+				        if v.Name == host then
+							local loweremsg = string.lower(personSay)
+							local splitstrg = loweremsg:split(' ')
+							if splitstrg[1] == '.dot' then
+								TELEPORT()
+							elseif splitstrg[1] == '.say' then
+								SAY(splitstrg[2])
+							elseif splitstrg[1] == '.airlock' then
+								AIRLOCK()
+							elseif splitstrg[1] == '.unlock' then
+								UNLOCK()
+							elseif splitstrg[1] == '.render' then
+								RENDER(splitstrg[2])
+							elseif splitstrg[1] == '.advert' then
+								ADVERT(splitstrg[2])
+							elseif splitstrg[1] == '.advertoff' then
+								ADVERTOFF()
+							elseif splitstrg[1] == '.fps' then
+								FPS(splitstrg[2])
+							elseif splitstrg[1] == '.tp' then
+								TELEPORTPLAYER(splitstrg[2])
+							elseif splitstrg[1] == '.follow' then
+								FOLLOWPLAYER()
+							elseif splitstrg[1] == '.unfollow' then
+								STOPFOLLOWING()
+							elseif splitstrg[1] == '.line' then
+								Line()
+							    end
+							end
+						end
+				    )
+			    end
+			end
+		end
+    end
